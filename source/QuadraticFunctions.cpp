@@ -16,6 +16,7 @@
 class QuadFunc //Class for converting the Quadratic Functions between Forms.
 {
 	public:
+
 		void stoi(float a, float b, float c) //Standard to Intercept conversion.
 		{
 			n = true;
@@ -34,92 +35,93 @@ class QuadFunc //Class for converting the Quadratic Functions between Forms.
 			std::cout << a << "(x-" << xv << ")^2+" << yv <<"\n";
 		}
 
-		float itos(float a, float x1, float x2) //Intercept to Standard conversion.
+		void itos(float a, float x1, float x2) //Intercept to Standard conversion.
 		{
 			float b = 0, c = 0;
 			b = ((x1*a)+(x2*a));
 			c = ((a*x1)*x2);
 			std::cout <<"The Standard Form is:\n";
 			std::cout << a <<"x^2+"<< b << "x+" << c <<"\n";
-			return 0;
 		}
 
-		float itov(float a, float x1, float x2) //Intercept to Vertex conversion.
+		void itov(float a, float x1, float x2) //Intercept to Vertex conversion.
 		{
 			xv = xvi(x1, x2);
 			yv = yvi(a, x1, x2, xv);
 			std::cout << "The Vertex Form is:\n";
 			std::cout << a << "(x-" << xv << ")^2+" << yv <<"\n";
-			return 0;
 		}
 
-		float vtos(/*float a, float x1, float x2*/) //Vertex to Standard conversion.
-				{
-					std::cout << "WIP\n";
-					return 0;
-				}
+		void vtos(float a, float xv, float yv) //Vertex to Standard conversion.
+		{
+			float b = 0, c = 0;
+			b = ((a*xv)+(a*xv));
+			c = ((a*xv*xv)+yv);
+			std::cout <<"The Standard Form is:\n";
+			std::cout << a <<"x^2+"<< b << "x+" << c <<"\n";
+		}
 
-		float vtoi(/*float a, float x1, float x2*/) //Vertex to Intercept conversion.
-				{
-					std::cout << "WIP\n";
-					return 0;
-				}
+		void vtoi(float a, float xv, float yv) //Vertex to Intercept conversion.
+		{
+			float x1 = 0, x2 = 0;
+			x1 = ((sqrt((-(yv)/a)))+xv);
+			x2 = ((-(sqrt((-(yv)/a))))+xv);
+			std::cout << "The Intercept Form is:\n";
+			std::cout << a << "(x+" << x1 << ")" << "(x+" << x2 << ")" <<"\n";
+		}
 
 
-		void sel() //Function in charge of receiving input and executing other functions. Fancy wording for a menu.
+		int sel() //Function in charge of receiving input and executing other functions. Fancy wording for a menu.
 			{
-				std::cout << "Select an option:\n1.Standard to Intercept.\n2.Standard to Vertex.\n3.Intercept to Standard.\n4.Intercept to Vertex.\n5.Vertex to Standard.\n6.Vertex to Intercept.\n"; //Print out the menu choices.
-				std::cin >> opt; //Receive input and make a choice.
-				switch(opt)
-				{
-					case 1:
-						std::cout << "Enter the value of \"a\":\n";
-						std::cin >> a;
-						std::cout << "Enter the value of \"b\":\n";
-						std::cin >> b;
-						std::cout << "Enter the value of \"c\":\n";
-						std::cin >> c;
-						stoi(a, b, c); //Call corresponding function using input received as arguments.
-						break;
+			//Revamped menu system!
+			std::cout << "Welcome to the Quadratic Function Form Converter v1!\nPlease select your function type:\n1. Standard Form Quadratic Function.\n2. Intercept Form Quadratic Function.\n3. Vertex Form Quadratic Function.\n4. Exit.\n";
+			std::cin >> opt;
+			 switch(opt)
+			 {
+			 	  case 1:
+			 	  	  std::cout << "Please enter the value of \"a\":";
+			 	  	  std::cin >> a ;
+			 	  	  std::cout << "Please enter the value of \"b\":";
+			 	  	  std::cin >> b ;
+			 	  	  std::cout << "Please enter the value of \"c\":";
+			 	  	  std::cin >> c ;
+			 	  	  stoi(a, b, c);
+			 	  	  stov(a, b, c);
+			 	  	  break;
 
-					case 2:
-						std::cout << "Enter the value of \"a\":\n";
-						std::cin >> a;
-						std::cout << "Enter the value of \"b\":\n";
-						std::cin >> b;
-						std::cout << "Enter the value of \"c\":\n";
-						std::cin >> c;
-						stov(a, b, c); //Call corresponding function using input received as arguments.
-						break;
+			 	  case 2:
+			 	  	  std::cout << "Please enter the value of \"a\":";
+			 	  	  std::cin >> a ;
+			 	  	  std::cout << "Please enter the value of \"x1\":";
+			 	  	  std::cin >> x1 ;
+			 	  	  std::cout << "Please enter the value of \"x2\":";
+			 	  	  std::cin >> x2 ;
+			 	  	  itos(a, x1, x2);
+			 	  	  itov(a, x1, x2);
+			 	  	  break;
 
-					case 3:
-						std::cout << "Enter the value of \"a\":\n";
-						std::cin >> a;
-						std::cout << "Enter the value of \"x1\":\n";
-						std::cin >> x1;
-						std::cout << "Enter the value of \"x2\":\n";
-						std::cin >> x2;
-						itos(a, x1, x2); //Call corresponding function using input received as arguments.
-						break;
+			 	  case 3:
+			 	  	  std::cout << "Please enter the value of \"a\":";
+			 	  	  std::cin >> a ;
+			 	  	  std::cout << "Please enter the value of \"xv\":";
+			 	  	  std::cin >> xv ;
+			 	  	  std::cout << "Please enter the value of \"yv\":";
+			 	  	  std::cin >> yv ;
+			 	  	  vtos(a, xv, yv);
+			 	  	  vtoi(a, xv, yv);
+			 	  	  break;
 
-					case 4:
-						std::cout << "Enter the value of \"a\":\n";
-						std::cin >> a;
-						std::cout << "Enter the value of \"x1\":\n";
-						std::cin >> x1;
-						std::cout << "Enter the value of \"x2\":\n";
-						std::cin >> x2;
-						itov(a, x1, x2);
-						break;
+			 	  case 4:
+			 	  	  break;
 
-					case 5:
-						vtos();
-						break;
+			 	  default:
+			 	  	  std::cout << "Invalid input";
+			 	  	  sel();
+			 	  	  break;
 
-					case 6:
-						vtoi();
-						break;
-				}
+			 }
+
+			return 0;
 			}
 
 	private:
@@ -165,7 +167,6 @@ class QuadFunc //Class for converting the Quadratic Functions between Forms.
 		float yvi(float a, float x1, float x2, float xv)  //Calculates the Y position of the Vertex from the Intercept Form values.
 		{
 			float x = 0;
-			std::cout << "DEBUG: " << a << " " << x1 << " " << x2 << " " << xv << "\n";
 			x = (a*(xv-x1)*(xv-x2));
 			return x;
 		}
@@ -177,3 +178,7 @@ int main(int argc, char **argv) //Program Entry Point
 	cf.sel(); //Starts the program via the sel() function in class QuadFunc.
 	return 0; //Ends program execution
 }
+
+
+
+
