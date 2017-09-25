@@ -10,5 +10,5 @@ First, ```cd``` into the sources folder.
 Second, build the file using ```make```.
 
 # How to use
-If on Windows, either double-click the file or run it from the the Command Prompt.
+If on Windows, either double-click the file in the bin folder or run it from the the Command Prompt.
 If on Linux, type ```chmod +x ./QuadraticFunctions``` and then ```./QuadraticFunctions``` to run it
